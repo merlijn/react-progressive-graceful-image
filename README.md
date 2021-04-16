@@ -1,12 +1,10 @@
 # React Progressive Graceful Image
 
-**Update**
-- [0.6.12] : `noLazyLoad` set to `true` works as expected.
 
-**Breaking changes:** 
-- [0.6.11] : Now, `ref` is removed as it is not required anymore for the lazyLoading feature.
-- [0.6.8] : Now, `retry` prop is removed to improve performance and user accessibility as new retry strategy based is on `window.navigator.onLine`.
-- [0.6.5] : Now, `ref` will be a required 2nd argument of children function to use the lazyLoading feature. Checkout below examples for details.
+**Note:** I published this [interesting article on medium](https://medium.com/@sanishkr/react-progressive-graceful-image-c7a45b577f5f) to explain the idea and motivation behind building this npm package. And a small [code snippet](https://gist.github.com/sanishkr/7f520f227989133a779eb49726bc77cb) to make best use of it.
+
+**Update**
+- [0.6.13] : `onError` bug-fix to works as expected.
 
 ***
 
@@ -161,8 +159,6 @@ You can do this by adding the fallback image inside of a `<noscript>` tag in the
 | noLazyLoad  | `boolean`                              | `false`  | flag to turn off lazy loading (default: `false`)         |
 | rootMargin  | `string`                               | `false`  | Intersection Observer Option (eg: `"0% 0% 25%"` -default)|
 | threshold   | `Array`                                | `false`  | Intersection Observer Option (eg: `[0]` -default)        |
-
-**Note:** I published this [interesting article on medium](https://medium.com/@sanishkr/react-progressive-graceful-image-c7a45b577f5f) to explain the idea and motivation behind building this npm package. And a small [code snippet](https://gist.github.com/sanishkr/7f520f227989133a779eb49726bc77cb) to make best use of it.
 
 ## Maintenance Status
 
