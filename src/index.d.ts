@@ -4,6 +4,7 @@ declare module 'react-progressive-graceful-image' {
     onError?: (errorEvent: Event) => void;
     placeholder: string;
     src: string;
+    className?: string;
     srcSetData?: {
       srcSet: string;
       sizes: string;

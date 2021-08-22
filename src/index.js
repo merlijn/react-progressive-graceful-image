@@ -9,6 +9,7 @@ type SrcSetData = {
 };
 
 type Props = {
+  className?: string,
   children: (string, boolean, SrcSetData) => React.Node,
   delay?: number,
   onError?: (errorEvent: Event) => void,
@@ -60,11 +61,11 @@ export default class ProgressiveImage extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props) {
-    const { src, placeholder, srcSetData } = this.props;
+    const { src, className, placeholder, srcSetData } = this.props;
     // We only invalidate the current image if the src has changed.
     if (src !== prevProps.src) {
       this.setState({ image: placeholder, loading: true }, () => {
-        this.loadImage(src, srcSetData);
+        this.loadImage(src, className, srcSetData);
       });
     }
   }
@@ -84,7 +85,7 @@ export default class ProgressiveImage extends React.Component<Props, State> {
     // this.clearEventListeners();
   }
 
-  loadImage = (src: string, srcSetData?: SrcSetData) => {
+  loadImage = (src: string, className?: string, srcSetData?: SrcSetData) => {
     // If there is already an image we nullify the onload
     // and onerror props so it does not incorrectly set state
     // when it resolves
@@ -93,6 +94,9 @@ export default class ProgressiveImage extends React.Component<Props, State> {
       this.image.onerror = null;
     }
     const image = new Image();
+
+    if (className) image.className = className;
+
     this.image = image;
     image.onload = this.onLoad;
     image.onerror = errorEvent => {
@@ -154,9 +158,9 @@ export default class ProgressiveImage extends React.Component<Props, State> {
 
   handleIntersection = (event, unobserve, isOnline) => {
     if (event.isIntersecting) {
-      const { src, srcSetData } = this.props;
+      const { src, className, srcSetData } = this.props;
       if (isOnline) {
-        this.loadImage(src, srcSetData);
+        this.loadImage(src, className, srcSetData);
         unobserve();
       }
     }
